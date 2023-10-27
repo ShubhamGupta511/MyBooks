@@ -4,7 +4,10 @@ import jakarta.persistence.*;
 import org.hibernate.dialect.ColumnAliasExtractor;
 
 // @Entity ---> Hibernate Pick it up because it is present in JPA Jar
-// @Entity---> Spring Ioc Will not pick i up
+// @Entity---> Spring Ioc Will not pick it up
+
+// Create Join Table With Foreign Key Constraints
+
 @Entity
 @Table(name = "my_book")
 public class Book {
@@ -20,9 +23,27 @@ public class Book {
     @Column(name = "price")
     private int cost;
 
+    @ManyToOne
+    @JoinColumn
+    private BookCategory bookCategory;
 
-   // Default Constructor is needed for the Instantiation of the Object by Hibernate
+    public BookCategory getBookCategory() {
+        return bookCategory;
+    }
 
+    public void setBookCategory(BookCategory bookCategory) {
+        this.bookCategory = bookCategory;
+    }
+// Default Constructor is needed for the Instantiation of the Object by Hibernate
+
+
+    public Book(String name, String authorName, int cost, int bookCategory) {
+        this.name = name;
+        this.authorName = authorName;
+        this.cost = cost;
+        this.bookCategory=new BookCategory();
+        this.bookCategory.setId(bookCategory);
+    }
 
     public Book() {
     }
