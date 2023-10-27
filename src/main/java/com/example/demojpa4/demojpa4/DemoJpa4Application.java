@@ -24,22 +24,26 @@ public class DemoJpa4Application implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
+
 		ArrayList<Book> book= new ArrayList<Book>();
 
-       Book b1=new Book(3,"XYZ","DGHJ",100);
-       Book b2=new Book(4,"The Startup","BJD",1000);
-	   Book b3=new Book(2,"The Investing","The Benjamin Gramham",10);
-	   book.add(b1);
-	   book.add(b2);
-	   book.add(b3);
+       Book b1=new Book("Annad","The Books",34);
+	   bookRepository.save(b1);
 
-	   bookRepository.saveAll(book);
+//       Book b2=new Book(4,"The Startup","BJD",1000);
+//	   Book b3=new Book(2,"The Investing","The Benjamin Gramham",10);
+//	   book.add(b1);
+//	   book.add(b2);
+//	   book.add(b3);
+
+//	   bookRepository.saveAll(book);
 //	   bookRepository.save(b1);
 
-		System.out.println(bookRepository.findAll());
-		System.out.println(bookRepository.findByAuthorName("DGHJ"));
-		System.out.println(bookRepository.findByCost(100));
-		System.out.println(bookRepository.findById(4));
+//		System.out.println(bookRepository.findAll());
+//		System.out.println(bookRepository.findByAuthorName("DGHJ"));
+//		System.out.println(bookRepository.findByAuthors("BJD"));
+//		System.out.println(bookRepository.findByCost(100));
+//		System.out.println(bookRepository.findById(4));
 
 	}
 }

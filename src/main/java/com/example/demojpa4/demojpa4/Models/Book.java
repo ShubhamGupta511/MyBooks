@@ -1,28 +1,33 @@
 package com.example.demojpa4.demojpa4.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.dialect.ColumnAliasExtractor;
 
 // @Entity ---> Hibernate Pick it up because it is present in JPA Jar
 // @Entity---> Spring Ioc Will not pick i up
 @Entity
+@Table(name = "my_book")
 public class Book {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
+
+    @Column(name = "book_name")
     private String name;
     private String authorName;
+
+    @Column(name = "price")
     private int cost;
 
 
-    // Default Constructor is needed for the Instantiation of the Object by Hibernate
+   // Default Constructor is needed for the Instantiation of the Object by Hibernate
 
 
     public Book() {
     }
 
-    public Book(int id, String name, String authorName, int cost) {
-        this.id = id;
+    public Book(String name, String authorName, int cost) {
         this.name = name;
         this.authorName = authorName;
         this.cost = cost;
